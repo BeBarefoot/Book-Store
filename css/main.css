@@ -1,0 +1,21 @@
+header {
+    text-align: center;
+    background-image: url(../img/bookstore.jpg);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    float: left;
+    justify-content: space-between
+}
+
+mark {
+    color: black;
+    opacity: 0.8;
+    border-radius: 10%
+}
+
+.dropdown-item:hover {
+    cursor: pointer;
+}

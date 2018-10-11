@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lib/bs4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Books`Tore</title>
+</head>
+
+<body onload="init()">
+    <header class="jumbotron jumbotron-fluid ">
+        <h1 class="display-1 "> <mark> Books`Tore </mark></h1>
+    </header>
+
+    <div class="container">
+        <div class="create-book">
+            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#new-book-modal">Create new book</button>
+        </div>
+
+        <div class="sort dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Sort By:
+                    </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="select-filter">
+                <a class="dropdown-item" value="1" onclick="sortBy(this)">Price</a>
+                <a class="dropdown-item" value="2" onclick="sortBy(this)">Rating</a>
+                <a class="dropdown-item" value="3" onclick="sortBy(this)">Name</a>
+            </div>
+        </div>
+    </div>
+    <!-- OnUpdate Modal -->
+    <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <input id="new-price-input" type="text" placeholder="new price">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick=setNewPrice(event)>Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Books Table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody class="books-table">
+
+        </tbody>
+    </table>
+
+    <!-- Are you sure you want to delete Modal -->
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    Really delete the book?!!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="deleteBook()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- add New Book Modal -->
+    <div class="modal fade" id="new-book-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Book</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-control-label">Book Name</label>
+                            <input type="text" class="new-book-title form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="form-control-label">Book Price</label>
+                            <input type="text" class="new-book-price form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="createBook()">Create Book</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Navigation  -->
+    <nav aria-label="...">
+        <ul class="pagination pagination-sm">
+            <li class="page-item disabled">
+                <a class="page-link" onclick="onPrevPage()" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" onclick="onNextPage()">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+
+
+    <script src="js/books-main.js"></script>
+    <script src="js/books-service.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="lib/bs4/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
